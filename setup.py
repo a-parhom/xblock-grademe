@@ -24,7 +24,7 @@ setup(
         'grademebutton',
     ],
     install_requires=[
-        'Django<2.0.0',
+        'Django',
         'edx-opaque-keys',
         'mock',
         'six',
