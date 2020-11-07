@@ -5,6 +5,8 @@ from __future__ import absolute_import
 from xblockutils.resources import ResourceLoader
 from xblockutils.studio_editable import StudioEditableXBlockMixin
 
+from lms.djangoapps.certificates.helpers import regeneration_request_available, regeneration_in_progress
+
 from .mixins.fragment import XBlockFragmentBuilderMixin
 
 
@@ -38,11 +40,30 @@ class GradeMeButtonViewMixin(
         """
         Build a context dictionary to render the student view
         """
+        user_service = self.runtime.service(self, 'user')
+        user = user_service.get_current_user()
+
+        #Check if certificate needs regeneration
+        show_regenerate_button = False
+        show_regenerate_in_progress = False
+        request_available = regeneration_request_available(user, self.course_id)
+        regeneration_in_progress = regeneration_in_progress(user, self.course_id)
+
+        if request_available and not regeneration_in_progress:
+            show_regenerate_button = True
+        elif regeneration_in_progress:
+            show_regenerate_in_progress = True
+
         context = context or {}
         context.update({
             'display_name': self.display_name,
             'description_text': self.description_text,
             'button_text': self.button_text,
             'is_anonymous_user': self.is_anonymous_user(),
+
+            # Certificate regeneration request button
+            'show_regenerate_button': show_regenerate_button,
+            'show_regenerate_in_progress': show_regenerate_in_progress,
+            'course_id': self.course_id,
         })
         return context

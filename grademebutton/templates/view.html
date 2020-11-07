@@ -17,4 +17,17 @@
         within the next 20 minutes.
     </p>
     {% endif %}
+    {% if show_regenerate_button or show_regenerate_in_progress %}
+    <ul class="actions actions-secondary cert_regeneration">
+        <li class="action">
+        {% if show_regenerate_button %}
+            <a class="btn request_regeneration" href="javascript:void(0)" data-course-id="{{course_id}}">Перегенерувати сертифікат</a><a href="javascript:void(0)" class="btn cert_regen_hint_toggle"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+            <div class="cert_regen_hint hidden">Можливість замовити автоматичну перегенерацію сертифікату з'являється, якщо ви внесли зміни до імені, прізвища чи по батькові на сторінці вашого профілю, а також якщо ви набрали більшу кількість балів, ніж та, з якою було згенеровано сертифікат. У випадку зміни прізвища, у вас є 2 спроби для перегенерації. Якщо ви вичерпали ці спроби, то навіть у випадку набору додаткових балів, можливість перегенерувати сертифікат надано не буде. У випадку, якщо зміни, внесені до вашого ПІБ, значні (наприклад, повна зміна імені або прізвища), вам потрібно звернутись на пошту технічної підтримки <a href="mailto:support@prometheus.org.ua">support@prometheus.org.ua</a>, вказати причину таких змін та попросити перегенерувати сертифікат вручну.</div>
+        {% endif %}
+        {% if show_regenerate_in_progress %}
+            <span class="regeneration_in_progress_message">Сертифікат в черзі перегенерації</span>
+        {% endif %}
+        </li>
+    </ul>
+    {% endif %}
 </div>
