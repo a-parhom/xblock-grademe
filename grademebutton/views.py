@@ -46,8 +46,13 @@ class GradeMeButtonViewMixin(
         #Check if certificate needs regeneration
         show_regenerate_button = False
         show_regenerate_in_progress = False
-        request_available = regeneration_request_available(user, self.course_id)
-        regeneration_in_progress = regeneration_in_progress(user, self.course_id)
+
+        if not self.is_anonymous_user():
+            request_available = regeneration_request_available(user.opt_attrs['edx-platform.user_id'], self.course_id)
+            regeneration_in_progress = regeneration_in_progress(user.opt_attrs['edx-platform.user_id'], self.course_id)
+        else:
+            request_available = False
+            regeneration_in_progress = False
 
         if request_available and not regeneration_in_progress:
             show_regenerate_button = True
