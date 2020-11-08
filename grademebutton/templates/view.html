@@ -2,8 +2,7 @@
     <h2>{{display_name}}</h2>
     {% if is_anonymous_user %}
     <p class="error verify-button-message-text">
-        We&apos;re sorry; users who have not created accounts and registered
-        for the course may not receive a Statement of Accomplishment.
+        Пробачте, користувачі, які не створили облікові записи та/або не зареєструвались на курс не можуть отримати сертифікат.
     </p>
     {% else %}
     <div class="verify-button-by-clicking-msg">
@@ -11,10 +10,7 @@
     </div>
     <input value="{{button_text}}" class="user_verify_button" type="button" />
     <p class="verify-button-message-text">
-        Your grading request has been received. If you have passed,
-        your Statement of Accomplishment should be available on your
-        <a href="/dashboard">account dashboard</a> page
-        within the next 20 minutes.
+        Ваш запит на генерацію сертифікату отримано. Якщо ви маєте необхідну кількість балів, ваш сертифікат стане доступний для завантаження у вашому <a href="/dashboard">особистому кабінеті</a> протягом 20 хвилин.
     </p>
     {% endif %}
     {% if show_regenerate_button or show_regenerate_in_progress %}
