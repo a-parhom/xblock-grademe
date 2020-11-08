@@ -62,7 +62,7 @@ function GradeMeButtonView(runtime, element) {
         var post_url = $('div.cert_regeneration').data('endpoint');
         $.ajax({
             type: "POST",
-            url: post_url,
+            url: '/request_regeneration',
             data: {'course_id': element.data("course-id")},
             success: function(data) {
                 if(data.success) {
