@@ -51,14 +51,14 @@ class GradeMeButtonViewMixin(
         if not self.is_anonymous_user():
             user = User.objects.get(id=xblock_user.opt_attrs['edx-platform.user_id'])
             request_available = regeneration_request_available(user, self.course_id)
-            regeneration_in_progress = regeneration_in_progress(user, self.course_id)
+            in_progress = regeneration_in_progress(user, self.course_id)
         else:
             request_available = False
-            regeneration_in_progress = False
+            in_progress = False
 
-        if request_available and not regeneration_in_progress:
+        if request_available and not in_progress:
             show_regenerate_button = True
-        elif regeneration_in_progress:
+        elif in_progress:
             show_regenerate_in_progress = True
 
         context = context or {}
