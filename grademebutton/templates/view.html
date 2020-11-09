@@ -1,29 +1,23 @@
 <div class="grademebutton_block">
     <h2>{{display_name}}</h2>
     {% if is_anonymous_user %}
-    <p class="error verify-button-message-text">
-        Пробачте, користувачі, які не створили облікові записи та/або не зареєструвались на курс не можуть отримати сертифікат.
-    </p>
+        <p class="error verify-button-message-text">
+            Пробачте, користувачі, які не створили облікові записи та/або не зареєструвались на курс не можуть отримати сертифікат.
+        </p>
     {% else %}
-    <div class="verify-button-by-clicking-msg">
-        <p>{{description_text}}</p>
-    </div>
-    <input value="{{button_text}}" class="user_verify_button" type="button" />
-    <p class="verify-button-message-text">
-        Ваш запит на генерацію сертифікату отримано. Якщо ви маєте необхідну кількість балів, ваш сертифікат стане доступний для завантаження у вашому <a href="/dashboard">особистому кабінеті</a> протягом 20 хвилин.
-    </p>
-    {% endif %}
-    {% if show_regenerate_button or show_regenerate_in_progress %}
-    <ul class="actions actions-secondary cert_regeneration">
-        <li class="action">
+        <div class="verify-button-by-clicking-msg">
+            <p>{{description_text}}</p>
+        </div>
         {% if show_regenerate_button %}
-            <a class="btn request_regeneration" href="javascript:void(0)" data-course-id="{{course_id}}">Перегенерувати сертифікат</a><a href="javascript:void(0)" class="btn cert_regen_hint_toggle"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+            <a class="btn request_regeneration" href="javascript:void(0)" data-course-id="{{course_id}}">{{button_text}}</a> <a href="javascript:void(0)" class="btn cert_regen_hint_toggle"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
             <div class="cert_regen_hint hidden">Можливість замовити автоматичну перегенерацію сертифікату з'являється, якщо ви внесли зміни до імені, прізвища чи по батькові на сторінці вашого профілю, а також якщо ви набрали більшу кількість балів, ніж та, з якою було згенеровано сертифікат. У випадку зміни прізвища, у вас є 2 спроби для перегенерації. Якщо ви вичерпали ці спроби, то навіть у випадку набору додаткових балів, можливість перегенерувати сертифікат надано не буде. У випадку, якщо зміни, внесені до вашого ПІБ, значні (наприклад, повна зміна імені або прізвища), вам потрібно звернутись на пошту технічної підтримки <a href="mailto:support@prometheus.org.ua">support@prometheus.org.ua</a>, вказати причину таких змін та попросити перегенерувати сертифікат вручну.</div>
-        {% endif %}
-        {% if show_regenerate_in_progress %}
+        {% elif show_regenerate_in_progress %}
             <span class="regeneration_in_progress_message">Сертифікат в черзі перегенерації</span>
+        {% else %}
+            <input value="{{button_text}}" class="user_verify_button" type="button" />
+            <p class="verify-button-message-text">
+                Ваш запит на генерацію сертифікату отримано. Якщо ви маєте необхідну кількість балів, ваш сертифікат стане доступний для завантаження у вашому <a href="/dashboard">особистому кабінеті</a> протягом 20 хвилин.
+            </p>
         {% endif %}
-        </li>
-    </ul>
     {% endif %}
 </div>
