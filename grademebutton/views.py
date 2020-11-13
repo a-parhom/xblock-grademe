@@ -72,5 +72,6 @@ class GradeMeButtonViewMixin(
             'show_regenerate_button': show_regenerate_button,
             'show_regenerate_in_progress': show_regenerate_in_progress,
             'course_id': self.course_id,
+            'user_name': xblock_user.opt_attrs['edx-platform.username'],
         })
         return context
